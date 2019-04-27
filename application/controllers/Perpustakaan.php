@@ -250,12 +250,12 @@ class Perpustakaan extends CI_Controller {
 		$data['anggota'] = $this->md_pem->anggota();
 		$data['buku'] = $this->md_pem->buku();
 		//var_dump($data);
-		$this->load->view('admin/dashboard/anggota/peminjaman_buku',$data);
+		$this->load->view('admin/dashboard/petugas/peminjaman_buku',$data);
 	}
 	public function riwayatPeminjam()
 	{
 		$data['peminjam'] = $this->md_pem->list_all();
-		$this->load->view('admin/dashboard/anggota/riwayat_peminjaman',$data);
+		$this->load->view('admin/dashboard/petugas/riwayat_peminjaman',$data);
 	}
 	public function peminjaman()
 	{

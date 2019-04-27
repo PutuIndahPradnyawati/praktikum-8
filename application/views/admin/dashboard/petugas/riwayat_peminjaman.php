@@ -1,27 +1,16 @@
 <!DOCTYPE html>
 <html>
-<?php $this->load->view('admin/layoutA/head') ?>
+<?php $this->load->view('admin/layout/head') ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <?php $this->load->view('admin/layoutA/header') ?>
+  <?php $this->load->view('admin/layout/header') ?>
   <!-- Left side column. contains the logo and sidebar -->
-  <?php $this->load->view('admin/layoutA/sidebar') ?>
+  <?php $this->load->view('admin/layout/sidebar') ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Dashboard
-        <small>Control panel</small>
-      </h1>
-      <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-            <li class="active">Dashboard</li>
-            <li class="active">Master Data Peminjaman Buku</li>
-          </ol>
-    </section>
     <!-- Main content -->
     <section class="content">
       <div class="row">
