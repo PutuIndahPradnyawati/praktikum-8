@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-    <?php $this->load->view('admin/layout/header2')?>
-    
+<?php $this->load->view('admin/layout/head') ?>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
 
-      <div id="content-wrapper">
+  <?php $this->load->view('admin/layout/header') ?>
+  <!-- Left side column. contains the logo and sidebar -->
+  <?php $this->load->view('admin/layout/sidebar') ?>
 
-        <div class="container-fluid">
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
 
-          <!-- DataTables Example -->
-          <div class="card mb-3">
-            <div class="card-header">PROGRAM PERPUSTAKAAN</div>
-            <div class="card-body">
-              <div class="table-responsive">
+          <div class="box">
+            <!-- /.box-header -->
+             <div class="box box-default">
+              <div class="box-header with-border">
+                <h3 class="box-title">PROGRAM PERPUSTAKAAN</h3>
+              </div>
+              <div class="box-body">
                 <p>Nama : Putu Indah Pradnyawati</p>
                 <p>Nim  : 1608561014</p>
-                <p>Kelas : Praktikum Pemrograman Berbasis Web A</p> 
+                <p>Kelas : Praktikum Pemrograman Berbasis Web A</p>
               </div>
-            </div>
-          </div>
-
-        </div>
-        <!-- /.container-fluid -->
-        <?php $this->load->view('admin/layout/footer2') ?>
+              
+              <!-- /.box-body -->
+          
   </body>
 
 </html>

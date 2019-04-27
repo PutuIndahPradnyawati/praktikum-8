@@ -6,6 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link rel="stylesheet" href="<?php echo base_url('assets/admin/bower_components')?>/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/admin/bower_components')?>/morris.js/morris.css">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/admin/bower_components')?>/jvectormap/jquery-jvectormap.css">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/admin/bower_components')?>/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/admin/bower_components')?>/bootstrap-daterangepicker/daterangepicker.css">
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/admin/plugins')?>/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
 
     <title>Program Perpustakaan</title>
 

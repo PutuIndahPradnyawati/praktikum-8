@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2019 at 11:53 AM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Generation Time: Apr 27, 2019 at 10:37 PM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -41,8 +39,7 @@ CREATE TABLE `anggota` (
 --
 
 INSERT INTO `anggota` (`Kd_Anggota`, `Nama`, `Prodi`, `Jenjang`, `Alamat`) VALUES
-(1, 'Wahyu Guna Negara', 'Ilkom', 'Semester 5', 'Jl.Astasura\r\n'),
-(2, 'I Made', 'Matematika', 'Semester 5', 'Jl.PHP');
+(3, 'Putu Indah Pradnyawati', 'Teknik Informatika', 'S1', 'Jalan A');
 
 -- --------------------------------------------------------
 
@@ -63,9 +60,7 @@ CREATE TABLE `buku` (
 --
 
 INSERT INTO `buku` (`Kd_Register`, `JudulBuku`, `Pengarang`, `Penerbit`, `TahunTerbit`) VALUES
-(1, 'Kalkulus', 'WahyuGuna', 'SIDU', 2019),
-(5, 'Kalkulus', 'WahyuGuna', 'SIDU', 2020),
-(6, 'PHP', 'Wahyu Guna Mantap', 'Mantap Club', 2015);
+(7, 'Bukan Buku Biasa', 'indah', 'IndahCorp', 2019);
 
 -- --------------------------------------------------------
 
@@ -100,14 +95,6 @@ CREATE TABLE `peminjaman` (
   `Kd_petugas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `peminjaman`
---
-
-INSERT INTO `peminjaman` (`Kd_pinjam`, `Kd_anggota`, `Kd_petugas`) VALUES
-(4, 1, 2),
-(5, 2, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -119,14 +106,6 @@ CREATE TABLE `petugas` (
   `Nama` varchar(225) NOT NULL,
   `Alamat` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `petugas`
---
-
-INSERT INTO `petugas` (`Kd_Petugas`, `Nama`, `Alamat`) VALUES
-(1, 'Wahyu', 'Jl.Astasura'),
-(2, 'Agus', 'Jl.Antasura');
 
 --
 -- Indexes for dumped tables
@@ -164,27 +143,22 @@ ALTER TABLE `petugas`
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `Kd_Anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `Kd_Anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `Kd_Register` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+  MODIFY `Kd_Register` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
   MODIFY `Kd_pinjam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `petugas`
 --
 ALTER TABLE `petugas`
   MODIFY `Kd_Petugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
