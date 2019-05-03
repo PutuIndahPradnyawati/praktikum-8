@@ -17,7 +17,7 @@ class Perpustakaan extends CI_Controller {
 	}
 	public function petugas()
 	{
-		$this->load->view('admin/dashboard/index');
+		$this->load->view('admin/index');
 	}
 	public function anggota()
 	{

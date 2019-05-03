@@ -22,9 +22,8 @@
                 <h3 class="box-title">PROGRAM PERPUSTAKAAN</h3>
               </div>
               <div class="box-body">
-                <p>Nama : Putu Indah Pradnyawati</p>
-                <p>Nim  : 1608561014</p>
-                <p>Kelas : Praktikum Pemrograman Berbasis Web A</p>
+                <h1>Login berhasil !</h1>
+                <h2>Hai, <?php echo $this->session->userdata("nama"); ?></h2>
               </div>
               
               <!-- /.box-body -->

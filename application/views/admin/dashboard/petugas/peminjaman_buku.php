@@ -43,12 +43,13 @@
                       </select>
                     </div>
                     <div class="form-group">
-                      <label>Pilih Nama Petugas</label>
-                        <select class="form-control" name="petugas" id="petugas" >
+                      <label>Nama Petugas</label>
+                      <input class="form-control" type="text" name="petugas" id="petugas" value=" <?php echo $this->session->userdata("nama"); ?>" disabled>
+                       <!--  <select class="form-control" name="petugas" id="petugas" >
                             <?php foreach ($petugas as $data) {?>
                             <option value="<?=$data->Kd_Petugas?>"><?=$data->Nama?></option>
                             <?php } ?>
-                        </select>    
+                        </select>   -->  
                     </div>
                     <div class="form-group">
                       <label>Pilih Buku</label>
