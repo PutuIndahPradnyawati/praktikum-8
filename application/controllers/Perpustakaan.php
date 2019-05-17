@@ -9,10 +9,12 @@ class Perpustakaan extends CI_Controller {
 
 		$this->load->model('DataMaster_Buku');
 		$this->load->model('DataMaster_Anggota');
+		$this->load->model('DataMaster_Petugas');
 		$this->load->model('DataMaster_Peminjaman');
 
 		$this->md_buku = $this->DataMaster_Buku;
 		$this->md_ang = $this->DataMaster_Anggota;
+		$this->md_pet = $this->DataMaster_Petugas;
 		$this->md_pem = $this->DataMaster_Peminjaman;
 	}
 	public function petugas()
@@ -46,6 +48,14 @@ class Perpustakaan extends CI_Controller {
 		//var_dump($data);
 		$this->load->view('admin/dashboard/petugas/master_anggota',$data);
 	}
+
+	//untuk petugas
+	public function listPetugas()
+	{
+		$data['petugas'] = $this->md_pet->list_all();
+		$this->load->view('admin/dashboard/petugas/master_petugas', $data);
+	}
+
 	public function addNew()
 	{
 		if( empty($this->uri->segment('3'))) {
@@ -102,6 +112,29 @@ class Perpustakaan extends CI_Controller {
 					redirect(base_url('Perpustakaan/listAnggota'));
 				}
 				break;
+				case 'petugas':
+					if( $_SERVER['REQUEST_METHOD'] == 'POST') {
+					$nama= $this->security->xss_clean( $this->input->post('nama'));
+					$username= $this->security->xss_clean( $this->input->post('username'));
+					$alamat= $this->security->xss_clean( $this->input->post('alamat'));
+					$password = $this->security->xss_clean($this->input->post('password'));
+
+					// validasi
+					$this->form_validation->set_rules('nama', 'Nama Anggot', 'required');
+					if(!$this->form_validation->run()) {
+						$this->session->set_flashdata('msg_alert_error', 'Gagal Menambah data Petugas');
+						redirect( base_url('Perpustakaan/listPetugas') );
+					}
+
+		            $data['Nama'] = $nama;
+					$data['Password'] = $password;
+					$data['Username'] = $username;
+					$data['Alamat'] = $alamat;
+					$this->md_pet->tambahPetugas($data);
+
+					redirect(base_url('Perpustakaan/listPetugas'));
+				}					
+				break;
 			default:
 				redirect( base_url() );
 				break;
@@ -129,6 +162,10 @@ class Perpustakaan extends CI_Controller {
 			case 'anggota':
 				$this->md_ang->hapusAnggota($id);
 			    redirect(base_url('Perpustakaan/listAnggota'));
+			break;
+			case 'petugas':
+				$this->md_pet->hapusPetugas($id);
+				redirect(base_url('Perpustakaan/listPetugas'));
 			break;
 			case 'peminjam':
 				$this->md_pem->hapusPeminjaman($id);
@@ -197,6 +234,29 @@ class Perpustakaan extends CI_Controller {
 					$this->md_ang->updateAnggota($id,$data);
 					redirect(base_url('Perpustakaan/listAnggota'));
 				}
+			break;
+			case 'petugas':
+				if( $_SERVER['REQUEST_METHOD'] == 'POST'){
+					$id = $this->security->xss_clean( $this->input->post('id'));
+					$nama = $this->security->xss_clean( $this->input->post('nama'));
+					$alamat = $this->security->xss_clean( $this->input->post('alamat'));
+					$username = $this->security->xss_clean( $this->input->post('username'));
+					// validasi
+					$this->form_validation->set_rules('nama', 'Nama Petugas', 'required');
+					if(!$this->form_validation->run()) {
+						$this->session->set_flashdata('msg_alert_error', 'Gagal Updata Petugas');
+						redirect( base_url('Perpustakaan/listPetugas') );
+					}
+
+		            $data['Nama'] = $nama;
+					$data['Alamat'] = $alamat;
+					$data['Username'] = $username;
+
+					// var_dump($data);
+					$this->md_pet->updatePetugas($id,$data);
+					redirect(base_url('Perpustakaan/listPetugas'));
+
+				}	
 			break;
 			case 'peminjam':
 				if( $_SERVER['REQUEST_METHOD'] == 'POST') {
