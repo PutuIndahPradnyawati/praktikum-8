@@ -20,6 +20,7 @@
 			{
 				$data_session = array(
 								'nama' => $username,
+								'id' => $session->Kd_Petugas,
 								'status' => "login"
 							);
 				$this->session->set_userdata($data_session);

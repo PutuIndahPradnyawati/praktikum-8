@@ -44,12 +44,11 @@
                     </div>
                     <div class="form-group">
                       <label>Nama Petugas</label>
-                      <input class="form-control" type="text" name="petugas" id="petugas" value=" <?php echo $this->session->userdata("nama"); ?>" disabled>
-                       <!--  <select class="form-control" name="petugas" id="petugas" >
+                        <select class="form-control" name="petugas" id="petugas" >
                             <?php foreach ($petugas as $data) {?>
                             <option value="<?=$data->Kd_Petugas?>"><?=$data->Nama?></option>
                             <?php } ?>
-                        </select>   -->  
+                        </select>  
                     </div>
                     <div class="form-group">
                       <label>Pilih Buku</label>
@@ -76,13 +75,14 @@
 
           
 
-<?php $this->load->view('admin/layoutA/footer') ?>
+<?php $this->load->view('admin/layout/footer') ?>
+
 
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
-<?php $this->load->view('admin/layoutA/scrip') ?>      
+<?php $this->load->view('admin/layout/scrip') ?>     
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

@@ -19,12 +19,12 @@ class Perpustakaan extends CI_Controller {
 	}
 	public function petugas()
 	{
-		$this->load->view('admin/index');
+	 	$this->load->view('admin/index');
 	}
-	public function anggota()
-	{
-		$this->load->view('admin/dashboard/anggota/index');
-	}
+	// public function anggota()
+	// {
+	// 	$this->load->view('admin/dashboard/anggota/index');
+	// }
 	public function index()
 	{
 		redirect( base_url() );
@@ -38,9 +38,39 @@ class Perpustakaan extends CI_Controller {
 	}
 	public function listBuku()
 	{
-		$data['buku'] = $this->md_buku->list_all();
-		//var_dump($data);
-		$this->load->view('admin/dashboard/petugas/master_buku',$data);
+		$this->load->database();
+		 $jumlah_data = $this->md_buku->jumlah_data();
+		 $this->load->library('pagination');
+		 //tampilan
+		 $config['first_link']       = 'First';
+		   $config['last_link']        = 'Last';
+		   $config['next_link']        = 'Next';
+		   $config['prev_link']        = 'Prev';
+		   $config['full_tag_open']    = '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
+		   $config['full_tag_close']   = '</ul></nav></div>';
+		   $config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
+		   $config['num_tag_close']    = '</span></li>';
+		   $config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
+		   $config['cur_tag_close']    = '<span class="sr-only">(current)</span></span></li>';
+		   $config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
+		   $config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
+		   $config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
+		   $config['prev_tagl_close']  = '</span>Next</li>';
+		   $config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
+		   $config['first_tagl_close'] = '</span></li>';
+		   $config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
+		   $config['last_tagl_close']  = '</span></li>';
+		 $config['base_url'] = base_url().'index.php/Perpustakaan/listBuku/';
+		 $config['total_rows'] = $jumlah_data;
+		 $config['per_page'] = 2;
+		 $from = $this->uri->segment(3);
+		 $this->pagination->initialize($config);
+		 //var_dump($config);
+		 $data['buku'] = $this->md_buku->list_all($config['per_page'],$from);
+		 $this->load->view('admin/dashboard/petugas/master_buku',$data);
+		// $data['buku'] = $this->md_buku->list_all();
+		// //var_dump($data);
+		// $this->load->view('admin/dashboard/petugas/master_buku',$data);
 	}
 	public function listAnggota()
 	{
@@ -333,12 +363,15 @@ class Perpustakaan extends CI_Controller {
 
 			$data['Kd_anggota'] = $anggota;
 			$data['Kd_petugas'] = $petugas;
-
 			$item['Kd_register'] = $buku;
 			$item['Tgl_pinjam'] = date('Y-m-d');
 			$this->md_pem->peminjaman($data,$item);
 
-			redirect(base_url('Perpustakaan/riwayatPeminjam'));
+			redirect(base_url('Perpustakaan/listPeminjaman'));
 		}
+	}
+	public function Logout()
+	{
+		$this->load->view('admin/dashboard/petugas/login');
 	}
 }

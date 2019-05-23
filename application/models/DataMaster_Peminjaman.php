@@ -46,7 +46,7 @@ class DataMaster_Peminjaman extends CI_Model {
 		
 		$id = $x->row()->Kd_pinjam;
 		$item['Kd_pinjam'] = $id;
-		//var_dump($item);
+		// var_dump($item);
 		$this->db->insert('detail_pinjam', $item);
 		$this->session->set_flashdata('msg_alert', 'Peminjaman Buku Berhasil');
 	}

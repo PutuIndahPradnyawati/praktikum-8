@@ -26,4 +26,8 @@ class DataMaster_Buku extends CI_Model {
 				 ->update('buku', $data);
 		$this->session->set_flashdata('msg_alert', 'Data Buku berhasil diupdate');
     }
+    public function jumlah_data()
+    {
+    	return $this->db->get('buku')->num_rows();
+    }
 }

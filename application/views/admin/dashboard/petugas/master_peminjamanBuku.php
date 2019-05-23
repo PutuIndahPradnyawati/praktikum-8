@@ -28,42 +28,55 @@
                       </div>
                 <?php } ?>
                 <div class="box-header">
-                  <h3 class="box-title">Data Buku
-                    <a class="btn btn-flat btn-success btn-sm" id="tambahBuku"><i class="fa fa-plus"> Tambah</i></a>
+                  <h3 class="box-title">Data Peminjaman Buku
+                    <a class="btn btn-flat btn-success btn-sm" id="tambahBuku"><i class="fa fa-plus" > Tambah</i></a>
                   </h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table id="dataBuku" class="table table-bordered table-hover">
+
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>Kode Buku</th>
+                        <th>Nama Peminjam</th>
+                        <th>Petugas Yang Melayani</th>
                         <th>Judul Buku</th>
-                        <th>Pengarang</th>
-                        <th>Penerbit</th>
-                        <th>Tahun Terbit</th>
+                        <th>Tanggal Peminjaman</th>
+                        <th>Tanggal Mengembalikan</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
                      <?php
-                     $i = $this->uri->segment('3') +1;
-                     foreach ($buku as $item){  ?>
+                     $i = 1;
+                     foreach ($peminjam as $item){  ?>
                       <tr>
                         <td><?=$i++;?></td>
-                        <td><?=$item->Kd_Register;?></td>
+                        <td><?=$item->anggota;?></td>
+                        <td><?=$item->petugas;?></td>
                         <td><?=$item->JudulBuku;?></td>
-                        <td><?=$item->Pengarang;?></td>
-                        <td><?=$item->Penerbit;?></td>
-                        <td><?=$item->TahunTerbit;?></td>
+                        <td><?=$item->Tgl_pinjam;?></td>
+                        <?php if($item->Tgl_kembali == NULL || $item->Tgl_kembali == 0000-00-00){ ?>
                         <td>
-                            <a href="<?=base_url("/Perpustakaan/hapus/buku/{$item->Kd_Register}");?>" onclick="return confirm('Yakin Hapus Buku <?=$item->JudulBuku ?>?')" class="btn btn-danger btn-xs" alt="Hapus Kusri"><i class="fa fa-trash"></i> Hapus</a>
+                          <a href="<?=base_url("/Perpustakaan/kembali/{$item->Kd_pinjam}");?>" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i> Buku Kembali Hari ini ?</a>
+                        </td>
+                        <?php }else{ ?>
+                        <td>
+                          <?=$item->Tgl_kembali;?>
+                        </td>
+                        <?php } ?>
+                        <td>
+                            <a href="<?=base_url("/Perpustakaan/hapus/peminjam/{$item->Kd_pinjam}");?>" onclick="return confirm('Yakin Hapus Buku <?=$item->JudulBuku ?>?')" class="btn btn-danger btn-xs" alt="Hapus Kusri"><i class="fa fa-trash"></i> Hapus</a>
                             <a 
-                              data-id_buku="<?=$item->Kd_Register?>"
+                              data-id_pinjam="<?=$item->Kd_pinjam?>"
                               data-judul = "<?=$item->JudulBuku?>"
-                              data-pengarang = "<?=$item->Pengarang?>"
-                              data-penerbit = "<?=$item->Penerbit?>"
-                              data-tahun = "<?=$item->TahunTerbit?>"
+                              data-id_buku = "<?=$item->Kd_register?>"
+                              data-anggota = "<?=$item->anggota?>"
+                              data-id_anggota = "<?=$item->Kd_anggota?>"
+                              data-petugas = "<?=$item->petugas?>"
+                              data-id_petugas = "<?=$item->Kd_petugas?>"
+                              data-pinjam = "<?=$item->Tgl_pinjam?>"
+                              data-kembali = "<?=$item->Tgl_kembali?>"
                               class="btn btn-warning btn-xs editbuku" alt="edit Buku"><i class="fa fa-pencil"> Edit</i></a>
                         </td>
                       </tr>
@@ -81,8 +94,6 @@
                       </tr>
                     </tfoot>
                   </table>
-                  <h5>Pagination manual</h5>
-                  <?php echo $this->pagination->create_links();?>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
 
@@ -215,7 +226,7 @@
     <script>
       $(function () {
 
-        // $('#dataBuku').DataTable({"pageLength": 10});
+        $('#dataBuku').DataTable({"pageLength": 10});
 
          $('#tambahBuku').click(function(){
             $('input+small').text('');
